@@ -1,0 +1,16 @@
+body {
+  margin: 5%;
+  text-align: center;
+}
+
+h1{
+  margin: 25px 15%;
+  min-width: 400px;
+  max-width: 400px;
+}
+
+#todo-list {
+  margin: 25px 25%;
+  text-align: justify;
+  min-width: 400px;
+}
