@@ -62,7 +62,7 @@ var TinyTest = {
             try {
                 testAction.apply(this);
                 testMessageLog.push(['Test:', testName, 'OK']);
-                success++
+                successes++
             } catch (e) {
                 failures++;
                 testMessageLog.push(['Test:', testName, 'FAILED', e]);

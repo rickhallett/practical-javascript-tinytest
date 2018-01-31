@@ -22,16 +22,20 @@
 
   <script>
     let bodyDOM = document.getElementsByTagName('body');
+    let todoListDOM = document.getElementById('todo-list');
     console.log(bodyDOM);
+    console.log(todoListDOM);
+    console.log(todoListDOM.children[0].innerHTML);
 
     tests({
 
       'it should have a place to store todos': function () {
-        eq(todoList[0].id, 0);;
+        eq(model.todoList[0].id, 0);;
       },
 
       'it should have a function to display todos': function () {
-        fail();
+        view.displayTodos();
+        eq(todoListDOM.children[0].innerHTML, 'This todo loads at page start-up');
       },
 
       'it should have a function to add new todos objects': function () {
