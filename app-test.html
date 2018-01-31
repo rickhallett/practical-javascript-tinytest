@@ -43,12 +43,10 @@
         eq(typeof controller.addTodo, 'function');
 
         //compare todoList.length before and after add one todo
-        let todoListLength = model.todoList.length;
-        eq(todoListLength, 3)
+        eq(model.todoList.length, 3)
         controller.addTodo('this todo was added by addTodo');
-        eq(todoListLength, 3)
+        eq(model.todoList.length, 4)
       },
-
 
       'it should have a function to change a todo': () => {
         eq(typeof controller.changeTodo, 'function');
@@ -60,6 +58,15 @@
       },
 
       'it should have a function to delete a todo': () => {
+        eq(typeof controller.deleteTodo, 'function');
+
+        //compare todoList.length before and after deleting one todo
+        eq(model.todoList.length, 4);
+        controller.deleteTodo(model.todoList[model.todoList.length - 1]);
+        eq(model.todoList.length, 3);
+      },
+
+      'it should dynamically assign todoList IDs based on position in todoList array': () => {
         fail();
       },
 

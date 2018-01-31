@@ -47,8 +47,12 @@ const controller = {
       completed: !!completed
     }
     model.todoList[todoID] = changedTodo;
+  },
+  deleteTodo: (todo) => {
+    let todoID = todo.id;
+    model.todoList.splice(todoID, 1);
   }
 
 }
 
-//can we change to arrow functions?
+//update console stack traces
