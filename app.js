@@ -17,16 +17,27 @@ let view = {
       element.id = todo.id;
       element.className = todo.completed === true ? 'completed' : '';
       elements.push(element);
-    })
+    });
 
     //iterate through HTML elements and inject into the DOM
     elements.forEach(function(el) {
       todoListDOM.appendChild(el);
-    })
-  }
+    });
+  },
 
 }
 
 let controller = {
+  addTodo: function (todoText, completed) {
+    //set ID to one higher than last todoList index
+    let newID = model.todoList.length;
+    let newTodo = {
+      id: newID,
+      todoText: todoText,
+      //if completed param not present, coerce to false
+      completed: !!completed
+    }
+    model.todoList.push(newTodo);
+  }
 
 }
