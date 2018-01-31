@@ -1,73 +1,28 @@
 
-Practical Javascript - Test Driven Development
-
-it should have a place to store todos
-it should have a way to display todos
-it should have a way to add new todos
-it should have a way to change a todo
-it should have a way to delete a todo
-
-
-Functions
-
-it should have a function to display todos
-it should have a function to add new todos
-it should have a function to change a todo
-it should have a function to delete a todo
 
 
 
-it should store the todos array on an object
-it should have a displayTodos method
-it should have an addTodo method
-it should have a deleteTodo method
 
 
 
-Booleans
-
-todoList.addTodo should add objects
-todoList.changeTodo should change the todoText property
-todoList.toggleCompleted should flip the completed property
-
-Loops of logic
-
-displayTodos should show.todoText
-displayTodos should tell you if .todos is empty
-displayTodos should show.completed
 
 
 
-Thinking in code
-
-toggleAll - if everythings true, make everything false
-toggleAll - otherwise, make everything true
-
-
-HTML and the DOM
-
-there should be a display todos button and a toggle all button in the app
-clicking display todos should run todoList.displayTodo
-clicking toggle all should run todoList.toggleAll
 
 
 
-Getting data from inputs'
-
-there should be a button for adding todos
-there should be a button for changing todos
-there should be a button for deleting todos
-there should be a button for toggling a todo
 
 
-Escape from the console
 
-there should be an li element for every todo
-each li element should contain.todoText
-each li elemtn should show.completed
-there should be a way to create delete buttons
-there should be a delete button for each todo'
-each li should have an id that has the todo position
-delete buttons should have access to the todo id
 
-clicking delete should update todoList.todos and the DOM
+
+
+
+
+
+
+
+
+
+
+
