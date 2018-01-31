@@ -38,54 +38,79 @@
  * MIT License. See https://github.com/joewalnes/jstinytest/
  */
 var TinyTest = {
-    
-        run: function(tests) {
-            var failures = 0;
-            for (var testName in tests) {
-                var testAction = tests[testName];
-                try {
-                    testAction.apply(this);
-                    console.log('Test:', testName, 'OK');
-                } catch (e) {
-                    failures++;
-                    console.error('Test:', testName, 'FAILED', e);
-                    console.error(e.stack);
-                }
+
+    run: function (tests) {
+        var errorStyles = [
+            , 'color: red'
+            , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+            , 'text-align: center'
+            , 'font-weight: bold'
+        ].join(';');
+
+        var successStyles = [
+            , 'color: green'
+            , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+            , 'text-align: center'
+            , 'font-weight: bold'
+        ].join(';')
+
+        var failures = 0;
+        var successes = 0;
+        var testMessageLog = [];
+        for (var testName in tests) {
+            var testAction = tests[testName];
+            try {
+                testAction.apply(this);
+                testMessageLog.push(['Test:', testName, 'OK']);
+                success++
+            } catch (e) {
+                failures++;
+                testMessageLog.push(['Test:', testName, 'FAILED', e]);
+                // console.error(e.stack);
             }
-            setTimeout(function() { // Give document a chance to complete
-                if (window.document && document.body) {
-                    document.body.style.backgroundColor = (failures == 0 ? '#99ff99' : '#ff9999');
-                }
-            }, 0);
-        },
-    
-        fail: function(msg) {
-            throw new Error('fail(): ' + msg);
-        },
-    
-        assert: function(value, msg) {
-            if (!value) {
-                throw new Error('assert(): ' + msg);
+        }
+        setTimeout(function () { // Give document a chance to complete
+            if (window.document && document.body) {
+                document.body.style.backgroundColor = (failures == 0 ? '#99ff99' : '#ff9999');
+                console.log('%c *** Practical Javascript - Test Driven Development ***', 'color: white');
+                testMessageLog.forEach(function (message, index) {
+                    if (message[2] === 'FAILED') {
+                        console.log(`%c ${message[0]}  ${message[1]} => ${message[2]} ${message[3]}`, errorStyles);
+                    } else {
+                        console.log(`%c ${message[0]}  ${message[1]} => ${message[2]}`, successStyles);
+                    }
+                });
             }
-        },
-    
-        assertEquals: function(expected, actual) {
-            if (expected != actual) {
-                throw new Error('assertEquals() "' + expected + '" != "' + actual + '"');
-            }
-        },
-    
-        assertStrictEquals: function(expected, actual) {
-            if (expected !== actual) {
-                throw new Error('assertStrictEquals() "' + expected + '" !== "' + actual + '"');
-            }
-        },
-    
-    };
-    
-    var fail               = TinyTest.fail.bind(TinyTest),
-        assert             = TinyTest.assert.bind(TinyTest),
-        assertEquals       = TinyTest.assertEquals.bind(TinyTest),
-        eq                 = TinyTest.assertEquals.bind(TinyTest), // alias for assertEquals
-        assertStrictEquals = TinyTest.assertStrictEquals.bind(TinyTest),
-        tests              = TinyTest.run.bind(TinyTest);
+        }, 0);
+    },
+
+    fail: function (msg) {
+        throw new Error('fail(): ' + msg);
+    },
+
+    assert: function (value, msg) {
+        if (!value) {
+            throw new Error('assert(): ' + msg);
+        }
+    },
+
+    assertEquals: function (expected, actual) {
+        if (expected != actual) {
+            throw new Error('assertEquals() "' + expected + '" != "' + actual + '"');
+        }
+    },
+
+    assertStrictEquals: function (expected, actual) {
+        if (expected !== actual) {
+            throw new Error('assertStrictEquals() "' + expected + '" !== "' + actual + '"');
+        }
+    },
+
+};
+
+var fail = TinyTest.fail.bind(TinyTest),
+    assert = TinyTest.assert.bind(TinyTest),
+    assertEquals = TinyTest.assertEquals.bind(TinyTest),
+    eq = TinyTest.assertEquals.bind(TinyTest), // alias for assertEquals
+    assertStrictEquals = TinyTest.assertStrictEquals.bind(TinyTest),
+    tests = TinyTest.run.bind(TinyTest);
