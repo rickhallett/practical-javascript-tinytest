@@ -35,7 +35,12 @@
 
       'it should have a function to display todos': function () {
         view.displayTodos();
-        eq(todoListDOM.children[0].innerHTML, 'This todo loads at page start-up');
+        eq(typeof view.displayTodos, 'function');
+      },
+
+      'it should update the DOM with display todos': function () {
+        view.displayTodos();
+        eq(todoListDOM.children[1].innerHTML, 'test todo 1');
       },
 
       'it should have a function to add new todos objects': function () {
