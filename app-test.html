@@ -21,29 +21,24 @@
   </div>
 
   <script>
-    let bodyDOM = document.getElementsByTagName('body');
     let todoListDOM = document.getElementById('todo-list');
-    console.log(bodyDOM);
-    console.log(todoListDOM);
-    console.log(todoListDOM.children[0].innerHTML);
-
 
     tests({
 
-      'it should have a place to store todos': function () {
+      'it should have a place to store todos': () => {
         eq(model.todoList[0].id, 0);;
       },
 
-      'it should have a function to display todos': function () {
+      'it should have a function to display todos': () => {
         eq(typeof view.displayTodos, 'function');
       },
 
-      'it should update the DOM with display todos': function () {
+      'it should update the DOM with display todos': () => {
         view.displayTodos();
         eq(todoListDOM.children[1].innerHTML, 'test todo 1');
       },
 
-      'it should have a function to add new todos objects': function () {\
+      'it should have a function to add new todos to todoList': () => {
         //check for presence of addTodo function in controller object
         eq(typeof controller.addTodo, 'function');
 
@@ -54,92 +49,93 @@
         eq(todoListLength, 3)
       },
 
-//es6 first
-      'it should have a function to change a todo': function () {
+
+      'it should have a function to change a todo': () => {
+        eq(typeof controller.changeTodo, 'function');
+
+        //check todoText before and after changing todo
+        eq(model.todoList[0].todoText, 'test todo 1');
+        controller.changeTodo(0, 'changed todo');
+        eq(model.todoList[0].todoText, 'changed todo');
+      },
+
+      'it should have a function to delete a todo': () => {
         fail();
       },
 
-      'it should change the todoText property': function () {
+      'it should have a way of flipping the completed property': () => {
         fail();
       },
 
-      'it should have a function to delete a todo': function () {
+      'it should have a way of showing completed todos': () => {
         fail();
       },
 
-      'it should have a way of flipping the completed property': function () {
+      'it should have a way of showing uncompleted todos': () => {
         fail();
       },
 
-      'it should have a way of showing completed todos': function () {
+      'it should tell you if the todos array is empty': () => {
         fail();
       },
 
-      'it should have a way of showing uncompleted todos': function () {
+      'it should auto-focus onto the todo input textbox at page load': () => {
         fail();
       },
 
-      'it should tell you if the todos array is empty': function () {
+      'there should be a button for changing todos': () => {
         fail();
       },
 
-      'it should auto-focus onto the todo input textbox at page load': function () {
+      'there should be a button for deleting todos': () => {
         fail();
       },
 
-      'there should be a button for changing todos': function () {
+      'there should be a button for toggling a todo': () => {
         fail();
       },
 
-      'there should be a button for deleting todos': function () {
+      'there should be a display todos button and a toggle all button in the app': () => {
         fail();
       },
 
-      'there should be a button for toggling a todo': function () {
+      'clicking display todos should run todoList.displayTodo': () => {
         fail();
       },
 
-      'there should be a display todos button and a toggle all button in the app': function () {
+      'clicking toggle all should run todoList.toggleAll': () => {
         fail();
       },
 
-      'clicking display todos should run todoList.displayTodo': function () {
+      'there should be an li element for every todo': () => {
         fail();
       },
 
-      'clicking toggle all should run todoList.toggleAll': function () {
+      'each li element should contain.todoText': () => {
         fail();
       },
 
-      'there should be an li element for every todo': function () {
+      'each li elemtn should show.completed': () => {
         fail();
       },
 
-      'each li element should contain.todoText': function () {
+      'there should be a way to create delete buttons': () => {
         fail();
       },
 
-      'each li elemtn should show.completed': function () {
+      'there should be a delete button for each todo': () => {
         fail();
       },
 
-      'there should be a way to create delete buttons': function () {
+      'each li should have an id that has the todo position': () => {
         fail();
       },
 
-      'there should be a delete button for each todo': function () {
+      'delete buttons should have access to the todo id': () => {
         fail();
       },
 
-      'each li should have an id that has the todo position': function () {
-        fail();
-      },
-
-      'delete buttons should have access to the todo id': function () {
-        fail();
-      },
-
-      'clicking delete should update todoList.todos and the DOM': function () {
+      'clicking delete should update todoList.todos and the DOM': () => {
         fail();
       }
 

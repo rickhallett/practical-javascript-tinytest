@@ -1,4 +1,4 @@
-let model = {
+const model = {
   todoList: [
     { id: 0, todoText: 'test todo 1', completed: false },
     { id: 1, todoText: 'test todo 2', completed: false },
@@ -6,12 +6,12 @@ let model = {
   ]
 }
 
-let view = {
-  displayTodos: function() {
+const view = {
+  displayTodos: () => {
     let elements = [];
     let todoListDOM = document.getElementById('todo-list');
     //iterate through todos and create array of HTML elements
-    model.todoList.forEach(function(todo) {
+    model.todoList.forEach((todo) => {
       let element = document.createElement('li');
       element.innerHTML = todo.todoText;
       element.id = todo.id;
@@ -20,15 +20,15 @@ let view = {
     });
 
     //iterate through HTML elements and inject into the DOM
-    elements.forEach(function(el) {
+    elements.forEach((el) => {
       todoListDOM.appendChild(el);
     });
   },
 
 }
 
-let controller = {
-  addTodo: function (todoText, completed) {
+const controller = {
+  addTodo: (todoText, completed) => {
     //set ID to one higher than last todoList index
     let newID = model.todoList.length;
     let newTodo = {
@@ -38,6 +38,17 @@ let controller = {
       completed: !!completed
     }
     model.todoList.push(newTodo);
+  },
+  changeTodo: (todoID, todoText, completed) => {
+    let changedTodo = {
+      id: todoID,
+      todoText: todoText,
+      //if completed param not present, coerce to false
+      completed: !!completed
+    }
+    model.todoList[todoID] = changedTodo;
   }
 
 }
+
+//can we change to arrow functions?
