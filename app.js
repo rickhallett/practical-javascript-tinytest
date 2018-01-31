@@ -11,7 +11,7 @@ const view = {
     let elements = [];
     let todoListDOM = document.getElementById('todo-list');
     //iterate through todos and create array of HTML elements
-    model.todoList.forEach((todo) => {
+    model.todoList.forEach(todo => {
       let element = document.createElement('li');
       element.innerHTML = todo.todoText;
       element.id = todo.id;
@@ -20,7 +20,7 @@ const view = {
     });
 
     //iterate through HTML elements and inject into the DOM
-    elements.forEach((el) => {
+    elements.forEach(el => {
       todoListDOM.appendChild(el);
     });
   },
@@ -48,9 +48,17 @@ const controller = {
     }
     model.todoList[todoID] = changedTodo;
   },
-  deleteTodo: (todo) => {
-    let todoID = todo.id;
-    model.todoList.splice(todoID, 1);
+  deleteTodo: (index) => {
+    model.todoList.splice(index, 1);
+    controller.refreshTodoListIDs();
+  },
+  //refreshTodoListIDs is a hacky solution that results from deleteTodo removing todos out of order, which interupts ID consecutivity
+  //calling this method after each call to deleteTodo re-assigns all values to match their array index position
+  //FIX: TBC by fellow student!
+  refreshTodoListIDs: () => {
+    model.todoList.forEach((el, i) => {
+      el.id = i;
+    });
   }
 
 }
